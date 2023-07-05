@@ -1,8 +1,16 @@
-<h1><%= @task.title %></h1>
+<div class="mb-4">
+  <h1><%= @task.title %></h1>
+</div>
 
 <p><%= @task.details %></p>
-
-<p><%= link_to 'Edit task', edit_task_path(@task) %></p>
-<p><%= link_to 'Delete task', task_path(@task), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }%></p>
-
-<p><%= link_to 'View all tasks', tasks_path %></p>
+<div class="row">
+  <div class="d-flex justify-content-between col-md-6">
+    <%= link_to edit_task_path(@task.id), class: 'btn btn-light border' do %>
+      <i class="fa fa-pencil"></i> Edit this task
+    <% end %>
+    <%=link_to task_path(@task.id), data: {turbo_method: :delete, turbo_confirm: "Delete #{@task.title}?"}, class: 'btn btn-secondary border' do %>
+      <i class="fa-regular fa-trash-can"></i> Delete tasks
+    <% end %>
+    <%= link_to('View all tasks', tasks_path, class: 'btn btn-dark')%>
+  </div>
+</div>
